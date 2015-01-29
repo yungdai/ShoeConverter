@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mensConvertedShoeSizeLabel: UILabel!
     
+    @IBOutlet weak var womensShoeSizeTextField: UITextField!
+
+    @IBOutlet weak var womensConvertedShoeSizeLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,22 +30,40 @@ class ViewController: UIViewController {
     }
 
     @IBAction func convertButtonPressed(sender: UIButton) {
-        let sizeFromTextField = mensShoeSizeTextField.text
-        // convert sizeFromTextField into an integer
-        let numberFromTextField = sizeFromTextField.toInt()
+//        let sizeFromTextField = mensShoeSizeTextField.text
+//        // convert sizeFromTextField into an integer
+//        let numberFromTextField = sizeFromTextField.toInt()
+//        
+//        var integerFromTextField = numberFromTextField!
+//        
+
+// refactored the code above into one line of code.
+        let sizeFromTextField = mensShoeSizeTextField.text.toInt()!
         
-        var integerFromTextField = numberFromTextField!
+// refactored the cdoe to make it more concise
         let conversionConstant = 30
-        // remember that this is the same as saying integerFromTextField = integerFromTextField + conversionConstant
-        integerFromTextField += conversionConstant
-        
-        // unhide the label
+        // this code makes the mensConvertedShoeSizeLabel visible
         mensConvertedShoeSizeLabel.hidden = false
-        
-        // "\(variable)" is string interpolation
-        let stringWithUpdatedShoeSize = "\(integerFromTextField)"
-        mensConvertedShoeSizeLabel.text = stringWithUpdatedShoeSize
+        // this code line of code below puts the text into the label
+        mensConvertedShoeSizeLabel.text = "\(sizeFromTextField + conversionConstant) " + "in European Shoe Size"
+
+//        integerFromTextField += conversionConstant
+//        mensConvertedShoeSizeLabel.hidden = false
+//        let stringWithUpdatedShoeSize = "\(integerFromTextField)"
+//        mensConvertedShoeSizeLabel.text = stringWithUpdatedShoeSize
     }
+    
+    @IBAction func convertWomensShoeSizeButtonPressed(sender: UIButton) {
+        
+        let sizeFromTextField = Double((womensShoeSizeTextField.text as NSString).doubleValue)
+        let conversionConstant = 30.5
+        womensConvertedShoeSizeLabel.hidden = false
+        womensConvertedShoeSizeLabel.text = "\(sizeFromTextField + conversionConstant) " + "in European Shoe Size"
+        
+    }
+
+    
+    
 
 }
 
